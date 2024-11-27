@@ -1,0 +1,144 @@
+
+Setting environment for using XAMPP for Windows.
+st@USER82 c:\xampp
+# mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 24
+Server version: 10.4.17-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use praveenmca2024
+ERROR 1049 (42000): Unknown database 'praveenmca2024'
+MariaDB [(none)]> use mca2024praveen
+Database changed
+MariaDB [mca2024praveen]> select * from  s;
++-----+-------+----------+--------+
+| sno | sname | s_status | s_city |
++-----+-------+----------+--------+
+| s1  | smith |       20 | London |
+| s2  | Jones |       10 | Paris  |
+| s3  | Blake |       10 | Paris  |
+| s4  | Clark |       20 | London |
+| s5  | Adams |       30 | Athens |
++-----+-------+----------+--------+
+5 rows in set (0.014 sec)
+
+MariaDB [mca2024praveen]> lock tables s read;
+Query OK, 0 rows affected (0.000 sec)
+
+MariaDB [mca2024praveen]> unlock tables;
+Query OK, 0 rows affected (0.000 sec)
+
+MariaDB [mca2024praveen]> lock tables s write;
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [mca2024praveen]> unlock tables;
+Query OK, 0 rows affected (0.000 sec)
+
+MariaDB [mca2024praveen]> lock  tables p write;
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [mca2024praveen]> select * from  s;
+ERROR 1100 (HY000): Table 's' was not locked with LOCK TABLES
+MariaDB [mca2024praveen]> unlock tables;
+Query OK, 0 rows affected (0.000 sec)
+
+MariaDB [mca2024praveen]> select * from  s;
++-----+--------+----------+--------+
+| sno | sname  | s_status | s_city |
++-----+--------+----------+--------+
+| s1  | guruji |       20 | London |
+| s2  | Jones  |       10 | Paris  |
+| s3  | Blake  |       10 | Paris  |
+| s4  | Clark  |       20 | London |
+| s5  | Adams  |       30 | Athens |
++-----+--------+----------+--------+
+5 rows in set (1 min 2.652 sec)
+
+MariaDB [mca2024praveen]> select * from  s;
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+Setting environment for using XAMPP for Windows.
+st@USER82 c:\xampp
+# mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 25
+Server version: 10.4.17-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use mca2024praveen
+Database changed
+MariaDB [mca2024praveen]>  select * from  p;
++-----+-------+-------+--------+--------+
+| pno | pname | color | weight | p_city |
++-----+-------+-------+--------+--------+
+| p1  | nut   | Red   |     12 | Landon |
+| p2  | Bolt  | Green |     17 | Paris  |
+| p3  | Screw | blue  |     17 | oslo   |
+| p4  | Screw | Red   |     14 | Landon |
+| p5  | cam   | blue  |     12 | paris  |
+| p6  | cg    | Red   |     19 | Landon |
++-----+-------+-------+--------+--------+
+6 rows in set (0.001 sec)
+
+MariaDB [mca2024praveen]> select*from s;
++-----+-------+----------+--------+
+| sno | sname | s_status | s_city |
++-----+-------+----------+--------+
+| s1  | smith |       20 | London |
+| s2  | Jones |       10 | Paris  |
+| s3  | Blake |       10 | Paris  |
+| s4  | Clark |       20 | London |
+| s5  | Adams |       30 | Athens |
++-----+-------+----------+--------+
+5 rows in set (0.001 sec)
+
+MariaDB [mca2024praveen]> update s set sname="guruji" where sno="s1";
+Query OK, 1 row affected (25.657 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [mca2024praveen]> select*from s;
++-----+--------+----------+--------+
+| sno | sname  | s_status | s_city |
++-----+--------+----------+--------+
+| s1  | guruji |       20 | London |
+| s2  | Jones  |       10 | Paris  |
+| s3  | Blake  |       10 | Paris  |
+| s4  | Clark  |       20 | London |
+| s5  | Adams  |       30 | Athens |
++-----+--------+----------+--------+
+5 rows in set (0.000 sec)
+
+MariaDB [mca2024praveen]> select*from s;
++-----+--------+----------+--------+
+| sno | sname  | s_status | s_city |
++-----+--------+----------+--------+
+| s1  | guruji |       20 | London |
+| s2  | Jones  |       10 | Paris  |
+| s3  | Blake  |       10 | Paris  |
+| s4  | Clark  |       20 | London |
+| s5  | Adams  |       30 | Athens |
++-----+--------+----------+--------+
+5 rows in set (8.049 sec)
+
+MariaDB [mca2024praveen]> lock  tables s write;
+Query OK, 0 rows affected (0.000 sec)
+
+MariaDB [mca2024praveen]> unlock tables;
+Query OK, 0 rows affected (0.000 sec)
+
+MariaDB [mca2024praveen]>
+
+
