@@ -34,12 +34,16 @@ INSERT INTO EMPLOYEES VALUES (101, 'Raj', 5000, 10);
 INSERT INTO EMPLOYEES VALUES (102, 'Neha', 6000, 20);
 INSERT INTO EMPLOYEES VALUES (103, 'Amit', 7000, 10);
 
+select * from EMPLOYEES;
 
 
-CREATE VIEW emp_summary AS SELECT EMP_ID, NAME, SALARY FROM EMPLOYEES;
+CREATE VIEW emp_summary AS SELECT EMP_ID, NAME, SALARY FROM EMPLOYEES where salary > 6000;
 
 
-UPDATE emp_summary SET SALARY = 9000 WHERE EMP_ID = 102;
+select * from emp_summary;
+
+
+UPDATE emp_summary SET SALARY = 9000 WHERE EMP_ID = 103;
 
 
 DELETE FROM emp_summary WHERE EMP_ID = 101;
@@ -70,8 +74,7 @@ SELECT * FROM emp_dept_view;
 UPDATE emp_dept_view SET SALARY = 9500 WHERE EMP_ID = 103;
 
 
-
-
+SELECT * FROM emp_dept_view;
 
 
 
