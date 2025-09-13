@@ -1,0 +1,4 @@
+exp mca31/mcauser@orcl19  owner=mca31 file=My-file-data.dmp  log=my-file-data.log
+
+
+imp mca31/mcauser@orcl19 fromuser=mca31  touser=mca32  file=temp.dmp log=backup.log
