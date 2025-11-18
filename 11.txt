@@ -142,3 +142,74 @@ Query OK, 0 rows affected (0.000 sec)
 MariaDB [mca2024praveen]>
 
 
+u4-p1
+
+SET SERVEROUTPUT ON;
+
+DECLARE
+  total_blocks           NUMBER;
+  total_bytes            NUMBER;
+  unused_blocks          NUMBER;
+  unused_bytes           NUMBER;
+  last_used_extent_file  NUMBER;
+  last_used_extent_block NUMBER;
+  last_used_block        NUMBER;
+BEGIN
+  DBMS_SPACE.UNUSED_SPACE(
+    segment_owner            => 'MCA10',
+    segment_name             => 'FRAG_TEST',
+    segment_type             => 'TABLE',
+    total_blocks             => total_blocks,
+    total_bytes              => total_bytes,
+    unused_blocks            => unused_blocks,
+    unused_bytes             => unused_bytes,
+    last_used_extent_file_id => last_used_extent_file,
+    last_used_extent_block_id=> last_used_extent_block,
+    last_used_block          => last_used_block
+  );
+
+  DBMS_OUTPUT.PUT_LINE('Table: MCA10.FRAG_TEST');
+  DBMS_OUTPUT.PUT_LINE('Total Blocks: ' || total_blocks);
+  DBMS_OUTPUT.PUT_LINE('Total Bytes: ' || total_bytes);
+  DBMS_OUTPUT.PUT_LINE('Unused Blocks: ' || unused_blocks);
+  DBMS_OUTPUT.PUT_LINE('Unused Bytes: ' || unused_bytes);
+  DBMS_OUTPUT.PUT_LINE('Last Used Extent File ID: ' || last_used_extent_file);
+  DBMS_OUTPUT.PUT_LINE('Last Used Extent Block ID: ' || last_used_extent_block);
+  DBMS_OUTPUT.PUT_LINE('Last Used Block: ' || last_used_block);
+END;
+/
+
+u3-p6
+
+EXPLAIN PLAN FOR
+    select * from attendance where attendance_id=1;
+
+SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY);
+
+
+OR
+
+SET AUTOTRACE ON
+SELECT * FROM employees WHERE department_id = 10;
+
+
+
+u3-p7
+
+SELECT
+    memory_sorts,
+    disk_sorts,
+    ROUND((memory_sorts / (memory_sorts + disk_sorts)) * 100, 6) AS sort_hit_ratio_percent
+FROM (
+    SELECT
+        SUM(CASE WHEN name = 'sorts (memory)' THEN value ELSE 0 END) AS memory_sorts,
+        SUM(CASE WHEN name = 'sorts (disk)' THEN value ELSE 0 END) AS disk_sorts
+    FROM v$sysstat
+    WHERE name IN ('sorts (memory)', 'sorts (disk)')
+);
+
+and 
+
+SELECT event, total_waits, time_waited
+FROM v$system_event
+WHERE event LIKE '%temp%';
